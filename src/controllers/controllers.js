@@ -24,3 +24,15 @@ export async function inserirPassagem(req, res) {
       res.status(500).send(err.message);
     }
 }
+
+export async function inserirHospedagem(req, res) {
+    const {cidade_id, preco_diaria, hotel, foto, cafe_da_manha, estacionamento}= req.body
+  
+    try{
+      await db.query(`INSERT INTO cidades (cidade_id, preco_diaria, hotel, foto, cafe_da_manha, estacionamento) VALUES ($1, $2, $3, $4, $5, $6)`,[cidade_id, preco_diaria, hotel, foto, cafe_da_manha, estacionamento]);
+  
+    return res.sendStatus(201)
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+}
