@@ -40,7 +40,7 @@ export async function inserirHospedagem(req, res) {
 export async function listarCidades(req, res) {
 
   try{
-    await db.query(`SELECT * FROM cidades`);
+    const cidades = await db.query(`SELECT * FROM cidades`);
 
   return res.status(201).send(cidades.rows)
   } catch (err) {
