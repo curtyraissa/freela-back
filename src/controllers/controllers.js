@@ -13,3 +13,14 @@ export async function inserirCidade(req, res) {
   }
 }
 
+export async function inserirPassagem(req, res) {
+    const {cidade_id, preco, cia_aerea, data, horario_saida, horario_chegada, cidade_origem, cidade_destino}= req.body
+  
+    try{
+      await db.query(`INSERT INTO cidades (cidade_id, preco, cia_aerea, data, horario_saida, horario_chegada, cidade_origem, cidade_destino) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,[cidade_id, preco, cia_aerea, data, horario_saida, horario_chegada, cidade_origem, cidade_destino]);
+  
+    return res.sendStatus(201)
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+}
