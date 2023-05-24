@@ -37,6 +37,17 @@ export async function inserirHospedagem(req, res) {
     }
 }
 
+export async function listarCidades(req, res) {
+
+  try{
+    await db.query(`SELECT * FROM cidades`);
+
+  return res.status(201).send(cidades.rows)
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+}
+
 export async function listarHospedagens(req, res) {
 
 }
