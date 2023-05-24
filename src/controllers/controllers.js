@@ -36,3 +36,19 @@ export async function inserirHospedagem(req, res) {
       res.status(500).send(err.message);
     }
 }
+
+export async function listarHospedagens(req, res) {
+
+}
+
+export async function listarPassagens(req, res) {
+
+}
+
+export async function detalhesHospedagem(req, res) {
+
+}
+
+export async function detalhesPassagem(req, res) {
+
+}
