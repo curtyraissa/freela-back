@@ -7,11 +7,11 @@ const freelaRouter = Router()
 freelaRouter.post("/cidades", inserirCidade)
 freelaRouter.post("/passagens", inserirPassagem)
 freelaRouter.post("/hospedagens", inserirHospedagem)
-freelaRouter.get("/cidades", listarcidades)
-freelaRouter.get("/passagens/:cidade_id", listarPassagens)
-freelaRouter.get("/hospedagens/:cidade_id", listarHospedagens)
-freelaRouter.get("/passagens/:passagem_id", detalhesPassagem)
-freelaRouter.get("/hospedagens/:hospedagem_id", detalhesHospedagem)
+freelaRouter.get("/cidades", listarCidades)
+freelaRouter.get("/passagens/cidade/:cidade_id", listarPassagens)
+freelaRouter.get("/hospedagens/cidade/:cidade_id", listarHospedagens)
+freelaRouter.get("/passagens/:id", detalhesPassagem)
+freelaRouter.get("/hospedagens/:id", detalhesHospedagem)
 
 
 export default freelaRouter
