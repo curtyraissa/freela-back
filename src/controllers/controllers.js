@@ -49,11 +49,23 @@ export async function listarCidades(req, res) {
 }
 
 export async function listarHospedagens(req, res) {
-
+  const { cidade_id } = req.params;
+  try {
+    const hospedagens = await db.query(`SELECT * FROM hospedagens WHERE cidade_id = $1;`, [cidade_id]);
+    res.send(hospedagens.rows);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 }
 
 export async function listarPassagens(req, res) {
-
+  const { cidade_id } = req.params;
+  try {
+    const passagens = await db.query(`SELECT * FROM passagens WHERE cidade_id = $1;`, [cidade_id]);
+    res.send(passagens.rows);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 }
 
 export async function detalhesHospedagem(req, res) {
