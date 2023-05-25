@@ -101,8 +101,12 @@ export async function detalhesHospedagem(req, res) {
 export async function detalhesPassagem(req, res) {
   const { id } = req.params;
   try {
-    const pass = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
-    res.status(201).send(pass.rows[0]);
+    const passagem = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
+
+    const pass = passagem.rows[0];
+    pass.data = (new Date(pass.data)).toISOString();
+
+    res.status(201).send(pass);
   } catch (err) {
     res.status(500).send(err.message);
   }
