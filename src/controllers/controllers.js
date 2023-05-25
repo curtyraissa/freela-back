@@ -86,20 +86,6 @@ export async function listarPassagens(req, res) {
 export async function detalhesHospedagem(req, res) {
   const { id } = req.params;
   try {
-    const hosp = await db.query(`SELECT id, cidade_id, preco_diaria, hotel, foto,
-    CASE WHEN cafe_da_manha THEN 'SIM' ELSE 'NAO' END AS cafe_da_manha_texto,
-    CASE WHEN estacionamento THEN 'SIM' ELSE 'NAO' END AS estacionamento_texto
-  FROM public.hospedagens;
-  WHERE id = $1;`,[id])
-    res.send(hosp.rows[0]);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-}
-
-export async function detalhesHospedagem(req, res) {
-  const { id } = req.params;
-  try {
     const hosp = await db.query(`
       SELECT cidade_id, preco_diaria, hotel, foto,
         CASE WHEN cafe_da_manha THEN 'SIM' ELSE 'NAO' END AS cafe_da_manha_texto,
