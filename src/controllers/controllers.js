@@ -69,9 +69,21 @@ export async function listarPassagens(req, res) {
 }
 
 export async function detalhesHospedagem(req, res) {
-
+  const { id } = req.params;
+  try {
+    const hosp = await db.query(`SELECT * FROM hospedagens WHERE id = $1;`,[id])
+    res.send(hosp.rows);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 }
 
 export async function detalhesPassagem(req, res) {
-
+  const { id } = req.params;
+  try {
+    const pass = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
+    res.send(pass.rows);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 }
