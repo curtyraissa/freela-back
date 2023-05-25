@@ -71,7 +71,7 @@ export async function listarPassagens(req, res) {
 
     const pass = passagens.rows.map((i) => ({
       id: i.id,
-      data: i.data,
+      data: (new Date(i.data)).toISOString().split('T')[0],
       horario: i.horario_saida,
       preco: i.preco,
       localPartida: i.cidade_destino
