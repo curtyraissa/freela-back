@@ -100,14 +100,28 @@ export async function detalhesHospedagem(req, res) {
 
 export async function detalhesPassagem(req, res) {
   const { id } = req.params;
+
   try {
-    const passagem = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
+    const pass = await db.query(`SELECT * FROM passagens WHERE id = $1;`, [id]);
+    const passagem = pass.rows[0];
 
-    const pass = passagem.rows[0];
-    pass.data = (new Date(pass.data)).toISOString();
+    const dataFormatada = (new Date(passagem.data)).toISOString().split('T')[0];
+    passagem.data = dataFormatada;
 
-    res.status(201).send(pass);
+    res.status(201).send(passagem);
   } catch (err) {
     res.status(500).send(err.message);
   }
 }
+
+//   try {
+//     const passagem = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
+
+//     const pass = passagem.rows[0];
+//     pass.data = (new Date(pass.data)).toISOString();
+
+//     res.status(201).send(pass);
+//   } catch (err) {
+//     res.status(500).send(err.message);
+//   }
+// }
