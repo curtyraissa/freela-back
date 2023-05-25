@@ -62,7 +62,16 @@ export async function listarPassagens(req, res) {
   const { cidade_id } = req.params;
   try {
     const passagens = await db.query(`SELECT * FROM passagens WHERE cidade_id = $1;`, [cidade_id]);
-    res.send(passagens.rows);
+
+    const pass = passagens.rows.map((i) => ({
+      id: i.id,
+      data: i.data,
+      horario: i.horario_saida,
+      preco: i.preco,
+      localPartida: i.cidade_destino
+  }));
+
+    res.status(201).send(pass);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -82,7 +91,7 @@ export async function detalhesPassagem(req, res) {
   const { id } = req.params;
   try {
     const pass = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
-    res.send(pass.rows[0]);
+    res.status(201).send(pass.rows[0]);
   } catch (err) {
     res.status(500).send(err.message);
   }
