@@ -72,7 +72,7 @@ export async function detalhesHospedagem(req, res) {
   const { id } = req.params;
   try {
     const hosp = await db.query(`SELECT * FROM hospedagens WHERE id = $1;`,[id])
-    res.send(hosp.rows);
+    res.send(hosp.rows[0]);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -82,7 +82,7 @@ export async function detalhesPassagem(req, res) {
   const { id } = req.params;
   try {
     const pass = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
-    res.send(pass.rows);
+    res.send(pass.rows[0]);
   } catch (err) {
     res.status(500).send(err.message);
   }
