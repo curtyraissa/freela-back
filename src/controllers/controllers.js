@@ -52,7 +52,13 @@ export async function listarHospedagens(req, res) {
   const { cidade_id } = req.params;
   try {
     const hospedagens = await db.query(`SELECT * FROM hospedagens WHERE cidade_id = $1;`, [cidade_id]);
-    res.send(hospedagens.rows);
+    const hosp = hospedagens.rows.map((i) => ({
+      id: i.id,
+      nome: i.hotel,
+      preco: i.preco_diaria,
+  }));
+
+    res.status(201).send(hosp);
   } catch (err) {
     res.status(500).send(err.message);
   }
