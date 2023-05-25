@@ -112,7 +112,6 @@ export async function detalhesHospedagem(req, res) {
   }
 }
 
-
 export async function detalhesPassagem(req, res) {
   const { id } = req.params;
   try {
