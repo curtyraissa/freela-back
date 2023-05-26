@@ -55,7 +55,7 @@ export async function listarHospedagens(req, res) {
     const hosp = hospedagens.rows.map((i) => ({
       id: i.id,
       nome: i.hotel,
-      preco: i.preco_diaria,
+      preco: `R$ ${i.preco_diaria}`,
   }));
 
     res.status(201).send(hosp);
@@ -114,14 +114,3 @@ export async function detalhesPassagem(req, res) {
   }
 }
 
-//   try {
-//     const passagem = await db.query(`SELECT * FROM passagens WHERE id = $1;`,[id])
-
-//     const pass = passagem.rows[0];
-//     pass.data = (new Date(pass.data)).toISOString();
-
-//     res.status(201).send(pass);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// }
