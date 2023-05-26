@@ -1,5 +1,5 @@
 import { db } from "../database/database.config.js";
-// import {cadastroSchema, loginSchema, urlSchema} from "../schemas/schemas.js";
+// import {cidadesSchema, passagensSchema, hospedagensSchema} from "../schemas/schemas.js";
 
 export async function inserirCidade(req, res) {
   const {nome}= req.body
