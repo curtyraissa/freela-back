@@ -92,7 +92,11 @@ export async function detalhesHospedagem(req, res) {
         CASE WHEN estacionamento THEN 'SIM' ELSE 'NAO' END AS estacionamento_texto
       FROM hospedagens
       WHERE id = $1;`, [id]);
-    res.send(hosp.rows[0]);
+
+      const hospedagem = hosp.rows[0];
+    hospedagem.preco_diaria = `R$ ${hospedagem.preco_diaria}`;
+
+    res.status(201).send(hospedagem);
   } catch (err) {
     res.status(500).send(err.message);
   }
